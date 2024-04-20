@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>対義語ジェネレーター</title>
+    <style>.main {
+    position: relative;
+    width: 80%;
+    margin: 40px 3%;
+}
+
+.main input[type='text'] {
+    font: 15px/24px sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+    height: 10em;
+    padding: 0.3em;
+    transition: 0.3s;
+    letter-spacing: 1px;
+    color: #000000;
+    border: 1px solid #1b2538;
+    border-radius: 4px;
+}
+
+.main input[type='text']::placeholder {
+    text-align: start;
+}
+
+.ef input[type='text']:focus {
+    border: 1px solid #4db56a;
+    outline: none;
+    box-shadow: 0 0 5px 1px rgba(77, 181, 106, .5);
+}</style>
+</head>
+
+<body>
+    {% block content %}
+    <header>
+    </header>
+    
+    <div class="main">
+        <h1>対義語ジェネレーター</h1>
+        <form method="POST" action="/">
+            <label class="ef">
+                <input name="input" placeholder="ここに文章を入力" type="text" size="100" height="100"; maxlength="30">
+                <input name="Button1" type="submit" value="対義語を作成">
+            </label>
+        </form>
+    </div>
+    {{ name }}
+    <footer>
+    </footer>
+    {% endblock %}
+</body>
+
+</html>
