@@ -41,7 +41,9 @@ body {
 }
 .brand img {
   height: 32px;
+  margin-top: 10px;
 }
+
 .site-nav {
   display: flex;
   gap: 16px;
@@ -64,25 +66,79 @@ body {
 }
 .hero {
   padding: 120px 0 100px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(
+    var(--hero-angle, 135deg),
+    #4e2b92 0%,
+    #7a40d2 var(--hero-stop-1, 32%),
+    #af6eef var(--hero-stop-2, 66%),
+    #2c1357 100%
+  );
+  background-size: 240% 240%;
   color: #fff;
   position: relative;
   overflow: hidden;
+  --hero-angle: 135deg;
+  --hero-stop-1: 32%;
+  --hero-stop-2: 66%;
 }
 .hero::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.1);
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 28%),
+              linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.3));
   z-index: 1;
+}
+.hero-star {
+  position: absolute;
+  display: block;
+  width: var(--star-size, 2px);
+  height: var(--star-size, 2px);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
+  animation: star-motion var(--star-duration, 6s) ease-in-out infinite;
+  animation-delay: var(--star-delay, 0s);
+  will-change: transform, opacity;
+  z-index: 0;
+}
+@keyframes star-motion {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.1;
+  }
+  25% {
+    transform: translate(var(--star-dx1, 0px), var(--star-dy1, 0px)) scale(1.4);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(var(--star-dx2, 0px), var(--star-dy2, 0px)) scale(0.9);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translate(var(--star-dx3, 0px), var(--star-dy3, 0px)) scale(1.4);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.1;
+  }
 }
 .hero-content {
   max-width: 720px;
   position: relative;
   z-index: 2;
+}
+.hero.animate-gradient {
+  animation: hero-bg-pulse 18s ease infinite;
+}
+@keyframes hero-bg-pulse {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 .eyebrow {
   margin: 0 0 16px;
@@ -122,21 +178,38 @@ body {
 }
 .button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  box-shadow: 0 14px 35px rgba(0,0,0,0.25);
 }
 .primary {
-  background: #f1c40f;
+  background: #ffd33d;
   color: #111;
+  box-shadow: 0 12px 28px rgba(255, 211, 61, 0.28);
 }
 .secondary {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.24);
   color: #fff;
-  border: 2px solid rgba(255,255,255,0.3);
-  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.4);
+  backdrop-filter: blur(12px);
 }
 .overview {
   padding: 80px 0 100px;
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  color: #fff;
+}
+.overview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 1;
+}
+.overview .container {
+  position: relative;
+  z-index: 2;
 }
 .section-title {
   margin-bottom: 50px;
@@ -147,39 +220,41 @@ body {
   margin: 0 0 16px;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #333;
+  color: #fff;
 }
 .section-title p {
   margin: 0;
-  color: #666;
+  color: rgba(255,255,255,0.9);
   font-size: 1.1rem;
 }
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: 1fr;
   gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 .card {
-  padding: 40px 32px;
-  background: #fff;
+  padding: 20px 16px;
+  background: rgba(255,255,255,0.15);
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-  border: 1px solid #e9ecef;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+  transform: translateY(-2.5px);
+  background: rgba(255,255,255,0.25);
 }
 .card h3 {
   margin-top: 0;
   font-size: 1.4rem;
   font-weight: 700;
-  color: #333;
+  color: #fff;
 }
 .card p {
-  margin: 16px 0 0;
-  color: #666;
+  margin: 20px 0 0;
+  color: rgba(255,255,255,0.9);
   line-height: 1.6;
 }
 .page-section {
@@ -313,4 +388,29 @@ body {
   .content-block {
     padding: 32px 24px;
   }
+}
+
+
+.overview {
+    position: relative;
+    background-image: url("/Users/magotanyou/書類/プログラミング/Aloopia/hassybirobiro.github.io/assets/nasa-Q1p7bh3SHj8-unsplash.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #111;
+    padding: 120px 0;
+}
+
+.overview::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.65);
+    /* 薄い白のオーバーレイ */
+    pointer-events: none;
+}
+
+.cards {
+    position: relative;
+    z-index: 1;
+    font-size: 1.5rem;
 }
