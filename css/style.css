@@ -384,7 +384,7 @@ body {
 
 .overview {
     position: relative;
-    background-image: url("/Users/magotanyou/書類/プログラミング/Aloopia/hassybirobiro.github.io/assets/nasa-Q1p7bh3SHj8-unsplash.jpg");
+    background-image: url("../assets/nasa-Q1p7bh3SHj8-unsplash.jpg");
     background-size: cover;
     background-position: center;
     color: #111;
