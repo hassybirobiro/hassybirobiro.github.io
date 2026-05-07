@@ -192,7 +192,6 @@ body {
 .primary {
   background: #ffd33d;
   color: #111;
-  box-shadow: 0 12px 28px rgba(255, 211, 61, 0.28);
 }
 .secondary {
   background: rgba(255,255,255,0.24);
