@@ -326,8 +326,7 @@ body {
   margin-left: auto;
   display: flex;
   gap: 16px;
-}
-/*
+}/*
 @media (max-width: 800px) {
   .site-nav {
     position: fixed;
