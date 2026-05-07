@@ -99,7 +99,7 @@ body {
     var(--hero-angle, 135deg),
     #4e2b92 0%,
     #7a40d2 var(--hero-stop-1, 32%),
-    #af6eef var(--hero-stop-2, 66%),
+    #ba8aea var(--hero-stop-2, 66%),
     #2c1357 100%
   );
   background-size: 240% 240%;

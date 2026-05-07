@@ -59,4 +59,59 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   requestAnimationFrame(animateHero);
+
+    const svg = document.querySelector('.hero-connections');
+    const lines = [];
+    const maxConnections = 15; // 同時に表示される線の最大数
+
+    function createLine() {
+        if (lines.length >= maxConnections) return;
+
+        const allStars = document.querySelectorAll('.hero-star');
+        // ランダムに2つの星を選択
+        const s1 = allStars[Math.floor(Math.random() * allStars.length)];
+        const s2 = allStars[Math.floor(Math.random() * allStars.length)];
+
+        if (s1 === s2) return;
+
+        // 星の現在位置を取得
+        const rect1 = s1.getBoundingClientRect();
+        const rect2 = s2.getBoundingClientRect();
+        const heroRect = hero.getBoundingClientRect();
+
+        // 距離が遠すぎる場合はつながない（お好みで調整）
+        const dist = Math.hypot(rect1.left - rect2.left, rect1.top - rect2.top);
+        if (dist > 300) return;
+
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', ((rect1.left + rect1.right) / 2) - heroRect.left);
+        line.setAttribute('y1', ((rect1.top + rect1.bottom) / 2) - heroRect.top);
+        line.setAttribute('x2', ((rect2.left + rect2.right) / 2) - heroRect.left);
+        line.setAttribute('y2', ((rect2.top + rect2.bottom) / 2) - heroRect.top);
+
+        // 線の見た目
+        line.setAttribute('stroke', 'rgba(255, 255, 255, 0.2)');
+        line.setAttribute('stroke-width', '0.5');
+        line.style.transition = 'opacity 1s ease';
+        line.style.opacity = '0';
+
+        svg.appendChild(line);
+        lines.push(line);
+
+        // アニメーション：フェードインして消える
+        requestAnimationFrame(() => {
+            line.style.opacity = '1';
+        });
+
+        setTimeout(() => {
+            line.style.opacity = '0';
+            setTimeout(() => {
+                line.remove();
+                lines.splice(lines.indexOf(line), 1);
+            }, 1000);
+        }, 2000 + Math.random() * 3000);
+    }
+
+    // 定期的に線を生成
+    setInterval(createLine, 400);
 });
