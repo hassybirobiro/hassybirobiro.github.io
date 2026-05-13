@@ -97,10 +97,10 @@ body {
   padding: 120px 0 100px;
   background: linear-gradient(
     var(--hero-angle, 135deg),
-    #4e2b92 0%,
-    #7a40d2 var(--hero-stop-1, 32%),
-    #ba8aea var(--hero-stop-2, 66%),
-    #2c1357 100%
+    #0F172A 0%,
+    #1E293B var(--hero-stop-1, 35%),
+    #334155 var(--hero-stop-2, 75%),
+    #E0E1E6 100%
   );
   background-size: 240% 240%;
   color: #fff;
@@ -176,6 +176,8 @@ body {
   color: #f1c40f;
   font-size: 0.85rem;
   font-weight: 600;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .hero h1 {
   margin: 0 0 24px;
@@ -220,10 +222,12 @@ body {
   backdrop-filter: blur(12px);
 }
 .overview {
+  background-color: #e0e1e6;
+}
+.overview {
   padding: 80px 0 100px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   position: relative;
-  color: #fff;
 }
 .overview::before {
   content: '';
@@ -481,6 +485,8 @@ body {
   }
   .hero-content {
     width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .hero h1 {
     font-size: 2.2rem;
